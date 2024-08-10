@@ -1,0 +1,78 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-content [fullscreen]="true">
+  <div align="center">
+    <img class="imgCls" src="assets/branding-logo.png" />
+  </div>
+  <ion-grid class="marginTop5">
+    <ion-card *ngIf="step1">
+      <form [formGroup]="form" class="ion-margin">
+        <div class="ion-margin-vertical">
+          <ion-item lines="full">
+            <ion-input
+              formControlName="mobile"
+              type="text"
+              placeholder="Enter mobile"
+            ></ion-input>
+          </ion-item>
+          <ion-text
+            color="danger"
+            *ngIf="!form.get('mobile').valid && form.get('mobile').touched"
+          >
+            <ion-text
+              class="error"
+              *ngIf="form.get('mobile').hasError('required')"
+            >
+              * Please enter mobile number
+            </ion-text>
+          </ion-text>
+        </div>
+        <div class="ion-margin-horizontal">
+          <ion-row> </ion-row>
+          <ion-button
+            [disabled]="!form.valid"
+            class="ion-margin-horizontal"
+            size="large"
+            expand="block"
+            shape="round"
+            color="primary"
+            (click)="onSubmit()"
+          >
+            <ion-text>Log In</ion-text>
+          </ion-button>
+        </div>
+      </form>
+    </ion-card>
+    <ion-card *ngIf="step2">
+      <app-otppin
+        (pinChange)="onOtpChange($event)"
+        [otp]="retrivedOTP"
+        [length]="6"
+        type="2"
+        #otp
+      ></app-otppin>
+    </ion-card>
+  </ion-grid>
+
+  <p class="ion-text-center">
+    <ion-text color="medium">OR</ion-text>
+  </p>
+  <div class="ion-margin-horizontal ion-text-center">
+    <ion-row>
+      <ion-col>
+        <ion-button
+          class="ion-margin-horizontal"
+          size="large"
+          shape="round"
+          color="secondary"
+          (click)="skiptoHome()"
+        >
+          <ion-text>Skip to Home</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

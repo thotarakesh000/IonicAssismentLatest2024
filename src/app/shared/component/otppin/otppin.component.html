@@ -1,0 +1,67 @@
+<ion-grid [formGroup]="pinFormGroup" class="ion-no-padding">
+  <ion-row>
+    <ion-col class="ion-justify-content-center ion-padding-bottom">
+      <input
+        inputmode="tel"
+        type="tel"
+        formControlName="input1"
+        #otp1
+        class="text-title black"
+        (keyup)="inputChanged($event, null, otpField2, 'input1')"
+        numberOnlyHTML
+        [maxlength]="1"
+      />
+      <input
+        inputmode="tel"
+        type="tel"
+        formControlName="input2"
+        #otp2
+        class="text-title black"
+        (keyup)="inputChanged($event, otpField1, otpField3, 'input2')"
+        numberOnlyHTML
+        [maxlength]="1"
+      />
+      <input
+        inputmode="tel"
+        type="tel"
+        formControlName="input3"
+        #otp3
+        class="text-title black"
+        (keyup)="inputChanged($event, otpField2, otpField4, 'input3')"
+        numberOnlyHTML
+        [maxlength]="1"
+      />
+      <input
+        inputmode="tel"
+        type="tel"
+        formControlName="input4"
+        #otp4
+        class="text-title black"
+        (keyup)="inputChanged($event, otpField3, otpField5, 'input4')"
+        numberOnlyHTML
+        [maxlength]="1"
+      />
+      <input
+        *ngIf="length > 4"
+        inputmode="tel"
+        type="tel"
+        formControlName="input5"
+        #otp5
+        class="text-title black"
+        (keyup)="inputChanged($event, otpField4, otpField6, 'input5')"
+        numberOnlyHTML
+        [maxlength]="1"
+      />
+      <input
+        inputmode="tel"
+        type="tel"
+        formControlName="input6"
+        #otp6
+        class="text-title black"
+        (keyup)="inputChanged($event, otpField5, null, 'input6')"
+        numberOnlyHTML
+        [maxlength]="1"
+      />
+    </ion-col>
+  </ion-row>
+</ion-grid>

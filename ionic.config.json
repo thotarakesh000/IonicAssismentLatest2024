@@ -1,0 +1,7 @@
+{
+  "name": "LoansCardsDemo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
