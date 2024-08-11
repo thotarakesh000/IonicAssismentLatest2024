@@ -98,28 +98,35 @@ export class RegisterPage implements OnInit {
     if (!this.registerForm.valid) {
       return;
     }
-    this.loader.showLoader();
-    let reqdata: users = {
-      "firstName": this.registerForm.value.firstName, "lastName": this.registerForm.value.lastName,
-      "latitude": this.registerForm.value.latitude, "longitude": this.registerForm.value.longitude,
-      "address": this.registerForm.value.address, "email": this.registerForm.value.email,
-      "mobileNumber": this.registerForm.value.mobileNumber,
-    };
-    this.loginService.registerUser(reqdata).subscribe((res: any) => {
-      console.log("registerUser ", res);
-      this.loader.hideLoader();
+    try {
+      // this.loader.showLoader();
+      let reqdata: users = {
+        "firstName": this.registerForm.value.firstName, "lastName": this.registerForm.value.lastName,
+        "latitude": this.registerForm.value.latitude, "longitude": this.registerForm.value.longitude,
+        "address": this.registerForm.value.address, "email": this.registerForm.value.email,
+        "mobileNumber": this.registerForm.value.mobileNumber,
+      };
+      this.cache.userList.push(reqdata);
+      // this.loginService.registerUser(reqdata).subscribe((res: any) => {
+      // console.log("registerUser ", res);
+      // this.loader.hideLoader();
       // if (res.status == "success") {
+      this.cache.setStorage("isRegistered", true)
+      // this.cache.setStorage("UserData", this.cache.userList)
 
       this.navctrl.navigateRoot(['/tabs'])
-
-      // }
-    }, (error) => {
-      console.log("validateLoginUser ", error)
+    } catch (ex) {
       this.loader.hideLoader();
-      this.loader.showToaster(error)
 
-      // this.t
-    })
+    }
+    // }
+    // }, (error) => {
+    //   console.log("validateLoginUser ", error)
+    //   this.loader.hideLoader();
+    //   this.loader.showToaster(error)
+
+    //   // this.t
+    // })
   }
   skiptoHome() {
     this.navctrl.navigateRoot(['/tabs'])

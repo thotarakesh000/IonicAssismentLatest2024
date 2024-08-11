@@ -14,35 +14,35 @@ export class AuthService {
   ) { }
 
   recaptcha() {
-    this.appVerifier = new RecaptchaVerifier( this._fireAuth,'recaptcha-container', {
+    this.appVerifier = new RecaptchaVerifier(this._fireAuth, 'sign-in-button', {
       size: 'invisible',
       callback: (response) => {
         console.log(response);
       },
-      'expired-callback': () => {}
+      'expired-callback': () => { }
     });
   }
 
   async signInWithPhoneNumber(phoneNumber) {
     try {
-      if(!this.appVerifier) this.recaptcha();
+      if (!this.appVerifier) this.recaptcha();
       const confirmationResult = await signInWithPhoneNumber(this._fireAuth, phoneNumber, this.appVerifier);
       this.confirmationResult = confirmationResult;
       return confirmationResult;
-    } catch(e) {
-      throw(e);
+    } catch (e) {
+      throw (e);
     }
   }
 
   async verifyOtp(otp) {
     try {
-      if(!this.appVerifier) this.recaptcha();
+      if (!this.appVerifier) this.recaptcha();
       const result = await this.confirmationResult.confirm(otp);
       console.log(result);
       const user = result?.user;
       console.log(user);
-    } catch(e) {
-      throw(e?.message);
+    } catch (e) {
+      throw (e?.message);
     }
   }
 

@@ -1,67 +1,32 @@
-<ion-grid [formGroup]="pinFormGroup" class="ion-no-padding">
-  <ion-row class="ion-padding">
-    <ion-col class="ion-justify-content-center ion-padding-bottom mobile">
-      <input
-        inputmode="tel"
-        type="tel"
-        formControlName="input1"
-        #otp1
-        class="text-title black"
-        (keyup)="inputChanged($event, null, otpField2, 'input1')"
-        numberOnlyHTML
-        [maxlength]="1"
-      />
-      <input
-        inputmode="tel"
-        type="tel"
-        formControlName="input2"
-        #otp2
-        class="text-title black"
-        (keyup)="inputChanged($event, otpField1, otpField3, 'input2')"
-        numberOnlyHTML
-        [maxlength]="1"
-      />
-      <input
-        inputmode="tel"
-        type="tel"
-        formControlName="input3"
-        #otp3
-        class="text-title black"
-        (keyup)="inputChanged($event, otpField2, otpField4, 'input3')"
-        numberOnlyHTML
-        [maxlength]="1"
-      />
-      <input
-        inputmode="tel"
-        type="tel"
-        formControlName="input4"
-        #otp4
-        class="text-title black"
-        (keyup)="inputChanged($event, otpField3, otpField5, 'input4')"
-        numberOnlyHTML
-        [maxlength]="1"
-      />
-      <input
-        *ngIf="length > 4"
-        inputmode="tel"
-        type="tel"
-        formControlName="input5"
-        #otp5
-        class="text-title black"
-        (keyup)="inputChanged($event, otpField4, otpField6, 'input5')"
-        numberOnlyHTML
-        [maxlength]="1"
-      />
-      <input
-        inputmode="tel"
-        type="tel"
-        formControlName="input6"
-        #otp6
-        class="text-title black"
-        (keyup)="inputChanged($event, otpField5, null, 'input6')"
-        numberOnlyHTML
-        [maxlength]="1"
-      />
-    </ion-col>
-  </ion-row>
-</ion-grid>
+<ion-content [fullscreen]="true">
+  <ion-button fill="clear" class="ion-margin" (click)="modalCtrl.dismiss()">
+    <ion-icon name="arrow-back" slot="icon-only" color="white"></ion-icon>
+  </ion-button>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-list lines="none">
+    <ion-list-header class="ion-margin">
+      <ion-label>Code Verification</ion-label>
+    </ion-list-header>
+
+    <ion-item class="ion-margin" lines="none">
+      <ion-label>
+        Enter Verification Code
+        <div class="ion-padding-top" align="center">
+          <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="config">
+          </ng-otp-input>
+        </div>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="none" class="ion-margin-horizontal">
+      <ion-button fill="clear" color="primary" slot="start" (click)="resend()">
+        RESEND OTP
+      </ion-button>
+      <ion-fab-button slot="end" color="danger" (click)="verifyOtp()">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-item>
+  </ion-list>
+</ion-footer>

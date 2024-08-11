@@ -7,6 +7,9 @@ import { StorageService } from '../shared/services/storage.service';
 import { CustomValidators } from '../shared/services/custom-validator.service';
 import { OtppinComponent } from '../shared/component/otppin/otppin.component';
 import { AuthService } from '../shared/services/auth.service';
+import { LoadingController, ModalController, ModalOptions } from '@ionic/angular';
+import { LoaderService } from '../shared/services/loader.service';
+import { AutoReadOtpService } from '../shared/services/auto-read-otp.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -20,10 +23,11 @@ export class LoginPage implements OnInit {
   userList = [];
   step1 = true;
   step2 = false;
-  constructor(private apiservice: ApiService, private router: Router,private auth:AuthService,
-    public fb: FormBuilder, private cache: StorageService) {
+  constructor(private autoOtpService: AutoReadOtpService, private router: Router, private auth: AuthService,
+    public fb: FormBuilder, private cache: StorageService, private modalCtrl: ModalController,
+    public loadingCtrl: LoaderService,
+  ) {
     this.initForm();
-    this.getUserData();
   }
 
   ngOnInit() { }
@@ -35,19 +39,30 @@ export class LoginPage implements OnInit {
 
     });
   }
-  getUserData() {
-    this.apiservice.getUserData().subscribe((res: users[]) => {
-      console.log("res ", res);
-      this.userList = res;
-    });
-  }
- async sendOtp() {
+  async sendOtp() {
     let mobile = this.form.controls["mobile"];
     if (mobile?.valid) {
+      this.autoOtpService.startWatching();
+
+      this.loadingCtrl.showLoader();
       this.step2 = true;
       this.step1 = false;
       const response = await this.auth.signInWithPhoneNumber('+91' + this.form.value.mobile);
       console.log(response);
+      this.cache.setStorage("mobile", this.form.value.mobile)
+      this.loadingCtrl.hideLoader();
+      const options: ModalOptions = {
+        component: OtppinComponent,
+        componentProps: {
+          phone: this.form.value.mobile
+        },
+        // swipeToClose: true
+      };
+
+      const modal = this.modalCtrl.create(options);
+      (await modal).present();
+      const data: any = (await modal).onWillDismiss();
+      console.log(data, "otp ", this.autoOtpService.watchOtp);
     }
   }
   onSubmit() {
@@ -58,11 +73,15 @@ export class LoginPage implements OnInit {
       let filterData = this.userList.filter((data: users) => mobile == data.mobileNumber);
       if (filterData.length > 0) {
         //user already exist
-        this.router.navigate(['/tabs'])
+        this.router.navigate(['/tabs']);
+        this.cache.setStorage("isRegistered", true)
+
 
       } else {
         //navigate to new registration
-        this.router.navigate(['/register'])
+        this.router.navigate(['/register']);
+        this.cache.setStorage("isRegistered", false)
+
       }
     }
   }

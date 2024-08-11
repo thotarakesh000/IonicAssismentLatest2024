@@ -10,6 +10,7 @@ import { LoginPage } from './login.page';
 import { OtppinComponent } from '../shared/component/otppin/otppin.component';
 import { StorageService } from '../shared/services/storage.service';
 import { NumberOnlyDirective } from '../shared/directives/common.directive';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { NumberOnlyDirective } from '../shared/directives/common.directive';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    NgOtpInputModule,
     LoginPageRoutingModule
   ],
   declarations: [LoginPage, OtppinComponent, NumberOnlyDirective],

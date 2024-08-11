@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title> Dashboard </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -30,6 +30,28 @@
     </ion-row>
   </ion-grid>
   <ion-row>
-    <button mat-raised-button>Basic</button>
+    <ng-container *ngFor="let item of slides; track i; let i = index">
+      <ion-col sizeLg="3" sizeMd="4" sizeSm="6" sizeXl="3" sizeXs="6">
+        <ion-card>
+          <ion-thumbnail>
+            <ion-img [src]="item?.banner"></ion-img>
+          </ion-thumbnail>
+
+          <ion-label>
+            <ion-text color="dark"><strong>{{item?.name}}</strong></ion-text>
+            <p>
+              <ion-text color="dark">
+                ₹<strong>{{item?.price}}</strong>
+              </ion-text>
+
+              <ion-text class="rating" color="dark">
+                {{item?.rating}}
+                <ion-icon name="star" color="warning"></ion-icon>
+              </ion-text>
+            </p>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+    </ng-container>
   </ion-row>
 </ion-content>

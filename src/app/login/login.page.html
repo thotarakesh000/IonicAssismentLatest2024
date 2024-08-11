@@ -4,10 +4,20 @@
   </ion-toolbar>
 </ion-header> -->
 <ion-content [fullscreen]="true">
-  <div align="center">
+  <ion-grid>
+    <ion-label color="white" class="ion-margin ion-padding-start">
+      Welcome
+      <p>
+        <ion-text color="white" class="ion-margin ion-padding-start"
+          >to PNB Bank</ion-text
+        >
+      </p>
+    </ion-label>
+  </ion-grid>
+  <!-- <div align="center">
     <img class="imgCls" src="assets/branding-logo.png" />
-  </div>
-  <ion-grid class="marginTop5">
+  </div> -->
+  <!-- <ion-grid class="marginTop5">
     <div id="recaptcha-container" 
   data-callback="sendForm"
   data-size="invisible">
@@ -29,7 +39,6 @@
             color="danger"
             *ngIf="!form.get('mobile').valid && form.get('mobile').touched"
           >
-            <!-- {{form.get('mobile').errors |json}} -->
             <ion-text
               class="error"
               *ngIf="form.get('mobile').hasError('required')"
@@ -81,24 +90,55 @@
         </div>
       </ion-card>
     </form>
-  </ion-grid>
-
-  <!-- <p class="ion-text-center">
-    <ion-text color="medium">OR</ion-text>
-  </p>
-  <div class="ion-margin-horizontal ion-text-center">
-    <ion-row>
-      <ion-col>
-        <ion-button
-          class="ion-margin-horizontal"
-          size="large"
-          shape="round"
-          color="secondary"
-          (click)="skiptoHome()"
-        >
-          <ion-text>Skip to Home</ion-text>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </div> -->
+  </ion-grid> -->
 </ion-content>
+<ion-footer class="ion-no-border">
+  <ion-row>
+    <ion-fab vertical="top" horizontal="end">
+      <ion-fab-button color="danger" (click)="sendOtp()">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-list lines="full">
+      <ion-list-header class="ion-margin">
+        <ion-label>Get Started</ion-label>
+      </ion-list-header>
+      <ion-item-group class="ion-margin-horizontal ion-margin-bottom">
+        <form [formGroup]="form">
+          <div id="sign-in-button"></div>
+
+          <div class="ion-margin-vertical">
+            <ion-item>
+              <ion-input
+                numberOnly
+                formControlName="mobile"
+                inputmode="numeric"
+                type="number"
+                [maxlength]="10"
+                placeholder="Enter mobile"
+              ></ion-input>
+            </ion-item>
+            <ion-text
+              color="danger"
+              *ngIf="!form.get('mobile').valid && form.get('mobile').touched"
+            >
+              <ion-text
+                class="error"
+                *ngIf="form.get('mobile').hasError('required')"
+              >
+                * Please enter mobile number
+              </ion-text>
+              <ion-text
+                class="error"
+                *ngIf="form.get('mobile').hasError('pattern')"
+              >
+                * Please enter Valid mobile number
+              </ion-text>
+            </ion-text>
+          </div>
+        </form>
+      </ion-item-group>
+    </ion-list>
+  </ion-row>
+</ion-footer>

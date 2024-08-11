@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { CanActivate } from '../shared/services/auth.guard';
 
 const routes: Routes = [
 
@@ -26,6 +27,7 @@ const routes: Routes = [
       },
       {
         path: 'tab4',
+        canActivate: [CanActivate],
         loadChildren: () => import('../tab4/tab4.module').then(m => m.Tab4PageModule)
       },
       // {

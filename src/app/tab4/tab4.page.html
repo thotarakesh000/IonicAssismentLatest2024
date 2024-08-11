@@ -1,13 +1,50 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tab4</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tab4</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card class="profile-content">
+    <div align="center" class="image">
+      <ion-avatar>
+        <img src="assets/avatar.png" />
+      </ion-avatar>
+    </div>
+
+    <ion-item lines="none" class="profile">
+      <ion-label class="ion-text-center">
+        <ion-text color="secondary"
+          >{{UserData?.firstName}} {{UserData?.lastName}}</ion-text
+        >
+        <!-- <p>
+          <ion-text color="medium"></ion-text>
+        </p> -->
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="options">
+    <ion-row class="ion-margin">
+      <ion-col size="4" class="ion-text-center">
+        <ion-label>
+          <p>
+            <ion-text color="primary">{{UserData?.mobileNumber}}</ion-text>
+          </p>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-margin">
+      <ion-col size="4" class="ion-text-center">
+        <ion-label>
+          <p>
+            <ion-text color="primary">{{UserData?.email}}</ion-text>
+          </p>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-margin">
+      <ion-col size="4" class="ion-text-center">
+        <ion-label>
+          <p>
+            <ion-text color="primary">{{UserData?.address}}</ion-text>
+          </p>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>
