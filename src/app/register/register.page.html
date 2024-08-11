@@ -1,13 +1,202 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>register</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-grid class="ion-margin-top ion-padding">
+    <form [formGroup]="registerForm">
+      <ion-card>
+        <!-- firstName -->
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-input
+                  formControlName="firstName"
+                  placeholder="Enter FirstName"
+                ></ion-input>
+              </ion-item>
+              <!-- {{loginForm.get('emailForm')?.errors}} -->
+              <ion-text
+                color="danger"
+                *ngIf="registerForm.get('firstName')?.errors && (registerForm.get('firstName')?.touched || registerForm.get('firstName')?.dirty ||formSubmit)"
+              >
+                <p
+                  *ngIf="registerForm.get('firstName')?.errors?.['required']??false"
+                >
+                  FirstName Required
+                </p>
+              </ion-text>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <!-- lastName -->
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-input
+                  formControlName="lastName"
+                  placeholder="Enter lastName"
+                ></ion-input>
+              </ion-item>
+              <!-- {{loginForm.get('emailForm')?.errors}} -->
+              <ion-text
+                color="danger"
+                *ngIf="registerForm.get('lastName')?.errors && (registerForm.get('lastName')?.touched || registerForm.get('lastName')?.dirty ||formSubmit)"
+              >
+                <p
+                  *ngIf="registerForm.get('lastName')?.errors?.['required']??false"
+                >
+                  lastName Required
+                </p>
+              </ion-text>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <!-- email -->
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-input
+                  formControlName="email"
+                  placeholder="Enter email"
+                ></ion-input>
+              </ion-item>
+              <!-- {{loginForm.get('emailForm')?.errors}} -->
+              <ion-text
+                color="danger"
+                *ngIf="registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty ||formSubmit)"
+              >
+                <p
+                  *ngIf="registerForm.get('email')?.errors?.['required']??false"
+                >
+                  email Required
+                </p>
+                <p *ngIf="registerForm.get('email')?.errors?.['email']??false">
+                  Invalid email
+                </p>
+              </ion-text>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <!-- mobileNumber -->
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-input
+                  formControlName="mobileNumber"
+                  readonly
+                  placeholder="Enter mobileNumber"
+                ></ion-input>
+              </ion-item>
+              <!-- {{loginForm.get('emailForm')?.errors}} -->
+              <ion-text
+                color="danger"
+                *ngIf="registerForm.get('mobileNumber')?.errors && (registerForm.get('mobileNumber')?.touched || registerForm.get('mobileNumber')?.dirty ||formSubmit)"
+              >
+                <p
+                  *ngIf="registerForm.get('mobileNumber')?.errors?.['required']??false"
+                >
+                  mobileNumber Required
+                </p>
+              </ion-text>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <!-- latitude longitude -->
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-input
+                  formControlName="latitude"
+                  readonly
+                  placeholder="Enter latitude"
+                ></ion-input>
+              </ion-item>
+              <!-- {{loginForm.get('emailForm')?.errors}} -->
+              <ion-text
+                color="danger"
+                *ngIf="registerForm.get('latitude')?.errors && (registerForm.get('latitude')?.touched || registerForm.get('latitude')?.dirty ||formSubmit)"
+              >
+                <p
+                  *ngIf="registerForm.get('latitude')?.errors?.['required']??false"
+                >
+                  latitude Required
+                </p>
+              </ion-text>
+            </ion-list>
+          </ion-col>
+          <!-- </ion-row>
+      <ion-row> -->
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-input
+                  formControlName="longitude"
+                  readonly
+                  placeholder="Enter longitude"
+                ></ion-input>
+              </ion-item>
+              <!-- {{loginForm.get('emailForm')?.errors}} -->
+              <ion-text
+                color="danger"
+                *ngIf="registerForm.get('longitude')?.errors && (registerForm.get('longitude')?.touched || registerForm.get('longitude')?.dirty ||formSubmit)"
+              >
+                <p
+                  *ngIf="registerForm.get('longitude')?.errors?.['required']??false"
+                >
+                  longitude Required
+                </p>
+              </ion-text>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <!-- address -->
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-textarea
+                  formControlName="address"
+                  [readonly]="true"
+                  placeholder="Enter address"
+                ></ion-textarea>
+              </ion-item>
+              <!-- {{loginForm.get('emailForm')?.errors}} -->
+              <!-- <ion-text
+                color="danger"
+                *ngIf="registerForm.get('address')?.errors && (registerForm.get('address')?.touched || registerForm.get('address')?.dirty ||formSubmit)"
+              >
+                <p
+                  *ngIf="registerForm.get('address')?.errors?.['required']??false"
+                >
+                  address Required
+                </p>
+              </ion-text> -->
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="registerUser()" expand="block"
+              >Register</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="skiptoHome()" color="secondary" expand="block"
+              >Skip</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </form>
+  </ion-grid>
 </ion-content>

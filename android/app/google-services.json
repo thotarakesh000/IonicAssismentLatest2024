@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "665101365203",
+    "project_id": "alpine-fin-414013",
+    "storage_bucket": "alpine-fin-414013.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665101365203:android:136becf5e7d4c575f0c926",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQiRL_spMwLLq9nN-IH-a2ULumTjbfQ8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

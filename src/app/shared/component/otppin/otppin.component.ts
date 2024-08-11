@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-otppin',
@@ -22,7 +23,7 @@ export class OtppinComponent implements OnInit {
   pinFormGroup: FormGroup;
 
   constructor(public fb: FormBuilder,
-    public cache: Cache) {
+    public cache: StorageService) {
     this.createForm();
     this.length = 4;
     this.type = 1;

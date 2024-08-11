@@ -9,6 +9,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { OtppinComponent } from '../shared/component/otppin/otppin.component';
 import { StorageService } from '../shared/services/storage.service';
+import { NumberOnlyDirective } from '../shared/directives/common.directive';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { StorageService } from '../shared/services/storage.service';
     IonicModule,
     LoginPageRoutingModule
   ],
-  declarations: [LoginPage, OtppinComponent],
+  declarations: [LoginPage, OtppinComponent, NumberOnlyDirective],
   providers: []
 })
 export class LoginPageModule { }

@@ -9,12 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiService } from './shared/services/api.service';
 import { StorageService } from './shared/services/storage.service';
-import { CommonDirective } from './shared/directives/common.directive';
+import { ModalService } from './shared/services/modal.service';
+import { LoaderService } from './shared/services/loader.service';
+import { NotificationService } from './shared/services/notification.service';
 
 @NgModule({
-  declarations: [AppComponent, CommonDirective],
+  declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ApiService, StorageService],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ApiService, StorageService, ModalService, LoaderService, NotificationService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,0 +1,47 @@
+@font-face {
+    font-family: text-security-disc;
+    src: url('https://raw.githubusercontent.com/noppa/text-security/master/dist/text-security-disc.woff');
+  }
+  
+  input {
+    font-family: text-security-disc;
+    -webkit-text-security: disc;
+  }
+  
+  ion-col {
+    display: flex;
+  }
+  
+  .web input {
+    background: #f9fbff;
+    border: 1px solid #ccd8ee;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 10px 0px !important;
+    margin-right: 10px;
+    max-width: 40px;
+    width: 40px;
+    text-align: center;
+  }
+  
+  .web input:focus-visible {
+    outline: none;
+  }
+  
+  .mobile input {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+    box-sizing: border-box;
+    padding: 10px 0px !important;
+    margin-right: 10px;
+    max-width: 36px;
+    height: 60px;
+    // width: 12%;
+    // outline: none;
+    text-align: center;
+    border-radius: 8px;
+    background: #f1f6f7;
+  }
+  

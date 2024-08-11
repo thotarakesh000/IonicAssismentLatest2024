@@ -8,13 +8,16 @@
     <img class="imgCls" src="assets/branding-logo.png" />
   </div>
   <ion-grid class="marginTop5">
-    <ion-card *ngIf="step1">
-      <form [formGroup]="form" class="ion-margin">
-        <div class="ion-margin-vertical">
+    <form [formGroup]="form" class="ion-margin">
+      <ion-card *ngIf="step1">
+        <div class="ion-margin-vertical ion-padding">
           <ion-item lines="full">
             <ion-input
+              numberOnly
               formControlName="mobile"
-              type="text"
+              inputmode="numeric"
+              type="number"
+              [maxlength]="10"
               placeholder="Enter mobile"
             ></ion-input>
           </ion-item>
@@ -22,42 +25,61 @@
             color="danger"
             *ngIf="!form.get('mobile').valid && form.get('mobile').touched"
           >
+            <!-- {{form.get('mobile').errors |json}} -->
             <ion-text
               class="error"
               *ngIf="form.get('mobile').hasError('required')"
             >
               * Please enter mobile number
             </ion-text>
+            <ion-text
+              class="error"
+              *ngIf="form.get('mobile').hasError('pattern')"
+            >
+              * Please enter Valid mobile number
+            </ion-text>
           </ion-text>
         </div>
         <div class="ion-margin-horizontal">
-          <ion-row> </ion-row>
           <ion-button
-            [disabled]="!form.valid"
             class="ion-margin-horizontal"
             size="large"
             expand="block"
             shape="round"
             color="primary"
-            (click)="onSubmit()"
+            (click)="sendOtp()"
           >
             <ion-text>Log In</ion-text>
           </ion-button>
         </div>
-      </form>
-    </ion-card>
-    <ion-card *ngIf="step2">
-      <app-otppin
-        (pinChange)="onOtpChange($event)"
-        [otp]="retrivedOTP"
-        [length]="6"
-        type="2"
-        #otp
-      ></app-otppin>
-    </ion-card>
+      </ion-card>
+      <ion-card *ngIf="step2">
+        <div class="ion-padding">
+          <app-otppin
+            (pinChange)="onOtpChange($event)"
+            [otp]="retrivedOTP"
+            [length]="6"
+            type="2"
+            #otp
+          ></app-otppin>
+          <div class="ion-margin-horizontal">
+            <ion-button
+              class="ion-margin-horizontal"
+              size="large"
+              expand="block"
+              shape="round"
+              color="primary"
+              (click)="onSubmit()"
+            >
+              <ion-text>Log In</ion-text>
+            </ion-button>
+          </div>
+        </div>
+      </ion-card>
+    </form>
   </ion-grid>
 
-  <p class="ion-text-center">
+  <!-- <p class="ion-text-center">
     <ion-text color="medium">OR</ion-text>
   </p>
   <div class="ion-margin-horizontal ion-text-center">
@@ -74,5 +96,5 @@
         </ion-button>
       </ion-col>
     </ion-row>
-  </div>
+  </div> -->
 </ion-content>

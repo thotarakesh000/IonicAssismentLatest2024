@@ -7,16 +7,37 @@ import { Preferences } from '@capacitor/preferences';
 export class StorageService {
 
   constructor() { }
-  setStorage(key, value) {
-    return Preferences.set({
+  async setStorage(key, value) {
+    return await Preferences.set({
       key,
       value
     });
   }
 
   getStorage(key) {
-    return Preferences.get({ key });
+    return new Promise((resolve, reject) => {
+      Preferences.get({ key: key }).then((val) => {
+        if (val.value) {
+          resolve(JSON.parse(val.value))
+        }
+        else {
+          reject(null)
+
+        }
+      })
+    })
+
   }
+  getName(key: string): any {
+    return Preferences.get({ key: key });
+
+  };
+  setName(key: any, value: any) {
+    Preferences.set({
+      key: key,
+      value: value,
+    });
+  };
   removeName(key) {
     return Preferences.remove({ key });
   };
