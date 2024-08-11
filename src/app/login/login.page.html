@@ -8,6 +8,10 @@
     <img class="imgCls" src="assets/branding-logo.png" />
   </div>
   <ion-grid class="marginTop5">
+    <div id="recaptcha-container" 
+  data-callback="sendForm"
+  data-size="invisible">
+  </div>
     <form [formGroup]="form" class="ion-margin">
       <ion-card *ngIf="step1">
         <div class="ion-margin-vertical ion-padding">

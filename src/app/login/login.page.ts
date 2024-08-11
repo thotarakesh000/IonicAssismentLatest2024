@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { StorageService } from '../shared/services/storage.service';
 import { CustomValidators } from '../shared/services/custom-validator.service';
 import { OtppinComponent } from '../shared/component/otppin/otppin.component';
+import { AuthService } from '../shared/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -19,7 +20,7 @@ export class LoginPage implements OnInit {
   userList = [];
   step1 = true;
   step2 = false;
-  constructor(private apiservice: ApiService, private router: Router,
+  constructor(private apiservice: ApiService, private router: Router,private auth:AuthService,
     public fb: FormBuilder, private cache: StorageService) {
     this.initForm();
     this.getUserData();
@@ -40,11 +41,13 @@ export class LoginPage implements OnInit {
       this.userList = res;
     });
   }
-  sendOtp() {
+ async sendOtp() {
     let mobile = this.form.controls["mobile"];
     if (mobile?.valid) {
       this.step2 = true;
       this.step1 = false;
+      const response = await this.auth.signInWithPhoneNumber('+91' + this.form.value.mobile);
+      console.log(response);
     }
   }
   onSubmit() {
