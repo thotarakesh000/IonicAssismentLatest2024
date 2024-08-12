@@ -1,7 +1,7 @@
 ion-content {
     --background: url('../../assets/ecomm1.png') no-repeat center center/cover;
     ion-grid {
-        transform: translateY(5vh);
+        transform: translateY(2vh);
         ion-label, p {
             font-size: 1.8rem;
             font-weight: bold;
@@ -17,7 +17,7 @@ ion-footer {
         display: block;
         ion-fab-button {
             margin-right: 2.5vh;
-            // margin-top: -2rem;
+            margin-top: -2rem;
         }
         ion-list {
             border-radius: 20px 20px 0 0;

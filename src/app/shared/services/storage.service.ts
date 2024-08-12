@@ -6,12 +6,12 @@ import { users } from '../models/user';
   providedIn: 'root'
 })
 export class StorageService {
-  userList: users[] = [];
+  // userList: users[] = [];
   constructor() { }
   async setStorage(key, value) {
     return await Preferences.set({
-      key,
-      value
+      key: key,
+      value: value,
     });
   }
 
@@ -22,7 +22,7 @@ export class StorageService {
           resolve(JSON.parse(val.value))
         }
         else {
-          reject(null)
+          resolve(null)
 
         }
       })

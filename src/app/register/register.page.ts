@@ -93,7 +93,7 @@ export class RegisterPage implements OnInit {
   }
 
 
-  registerUser() {
+  async registerUser() {
     this.formSubmit = true;
     if (!this.registerForm.valid) {
       return;
@@ -106,13 +106,15 @@ export class RegisterPage implements OnInit {
         "address": this.registerForm.value.address, "email": this.registerForm.value.email,
         "mobileNumber": this.registerForm.value.mobileNumber,
       };
-      this.cache.userList.push(reqdata);
+      let cacheUserData: users[] = await this.cache.getStorage("UserData") as users[]
+      console.log(cacheUserData);
+      cacheUserData.push(reqdata)
       // this.loginService.registerUser(reqdata).subscribe((res: any) => {
       // console.log("registerUser ", res);
       // this.loader.hideLoader();
       // if (res.status == "success") {
-      this.cache.setStorage("isRegistered", true)
-      // this.cache.setStorage("UserData", this.cache.userList)
+      this.cache.setStorage("isRegistered", "1")
+      this.cache.setStorage("UserData", JSON.stringify(cacheUserData))
 
       this.navctrl.navigateRoot(['/tabs'])
     } catch (ex) {

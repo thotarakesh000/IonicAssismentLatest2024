@@ -8,7 +8,6 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { OtppinComponent } from '../shared/component/otppin/otppin.component';
-import { StorageService } from '../shared/services/storage.service';
 import { NumberOnlyDirective } from '../shared/directives/common.directive';
 import { NgOtpInputModule } from 'ng-otp-input';
 

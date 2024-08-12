@@ -79,17 +79,25 @@ export class OtppinComponent implements OnInit {
       this.showLoader();
       const response = await this.auth.verifyOtp(this.otp);
       console.log(response);
-      let filterData = this.cache.userList.filter((data: users) => this.phone == data.mobileNumber);
-      this.hideLoader();
-      this.modalCtrl.dismiss();
-      if (filterData.length > 0) {
-        //user already exist
-        this.router.navigate(['/tabs'])
+      let cacheUserData: users[] = await this.cache.getStorage("UserData") as users[];
+      if (cacheUserData && cacheUserData.length > 0) {
 
-      } else {
+        let filterData = cacheUserData.filter((data: users) => this.phone == data.mobileNumber);
+        if (filterData.length > 0) {
+          //user already exist
+          this.router.navigate(['/tabs'])
+
+        } else {
+          //navigate to new registration
+          this.router.navigate(['/register'])
+        }
+      }
+      else {
         //navigate to new registration
         this.router.navigate(['/register'])
       }
+      this.hideLoader();
+      this.modalCtrl.dismiss();
 
 
     } catch (e) {

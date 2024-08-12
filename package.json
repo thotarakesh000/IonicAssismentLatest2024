@@ -8,8 +8,10 @@
     "appInstall": "npm i --force",
     "start": "ionic serve",
     "build": "ionic build",
+    "addPlatform": "ionic cap add android",
     "syncOpenAndroid": "ionic cap sync android && ionic cap open android",
     "buildandOpen": "npm run build && npm run syncOpenAndroid",
+    "buildandOpenforFirstTime": "npm run build && npm run addPlatform && npm run syncOpenAndroid",
     "watch": "ng build --watch --configuration development",
     "livereload": "ionic cap run android -l --external",
     "lint": "ionic cap open android"
